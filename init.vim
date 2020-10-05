@@ -12,7 +12,7 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
-Plug 'christoomey/vim-tmux-navigator'
+"Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'morhetz/gruvbox'
 
@@ -24,12 +24,17 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'rbong/vim-crystalline'
 Plug 'tomtom/tcomment_vim'
+Plug 'dyng/ctrlsf.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 " Initialize plugin system
 call plug#end()
+
+colorscheme dracula
 
 nmap <C-Right> :bNext<CR>
 
 inoremap jk <ESC>
+nmap <C-e> :NERDTreeFind<CR>
 nmap <C-n> :NERDTreeToggle<CR>
 nmap <C-b> :NERDTreeFocus<CR>
 vmap ++ <plug>NERDCommenterToggle
@@ -54,7 +59,7 @@ let g:NERDTreeGitStatusWithFlags = 1
     "\ }
 
 
-let g:NERDTreeIgnore = ['^node_modules$']
+let g:NERDTreeIgnore = ['^node_modules$', '^dist$']
 
 " vim-prettier
 "let g:prettier#quickfix_enabled = 0
@@ -80,13 +85,13 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 set relativenumber
 
 set smarttab
-set cindent
+"set cindent
 set tabstop=2
 set shiftwidth=2
 " always uses spaces instead of tab characters
 set expandtab
 
-colorscheme gruvbox
+"colorscheme gruvbox
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
@@ -111,7 +116,6 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pairs',
   \ 'coc-tsserver',
-  \ 'coc-eslint',
   \ 'coc-prettier',
   \ 'coc-json',
   \ ]
@@ -140,7 +144,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <C-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -313,3 +317,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+nmap     <C-F>f <Plug>CtrlSFPrompt                  
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
