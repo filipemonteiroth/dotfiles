@@ -8,7 +8,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
-Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+"Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
@@ -26,10 +26,26 @@ Plug 'rbong/vim-crystalline'
 Plug 'tomtom/tcomment_vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+Plug 'elixir-editors/vim-elixir'
 " Initialize plugin system
 call plug#end()
 
 colorscheme dracula
+
+" Use fzf to open/find in files
+nnoremap <C-p> :GFiles<Cr>
+nnoremap <silent> <expr> <c-p><c-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+nnoremap <C-g> :Ag<Cr>
+nnoremap <silent><leader>l :Buffers<CR>
+
+let g:fzf_action = {
+  \ 'enter': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
 
 nmap <C-Right> :bNext<CR>
 
@@ -75,7 +91,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree")
 
 
 " ctrlp
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " j/k will move virtual lines (lines that wrap)
 "noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -240,10 +256,10 @@ set ignorecase
 
 "set statusline+=%F
 
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
-    \ 'AcceptSelection("t")': ['<cr>'],
-    \ }
+"let g:ctrlp_prompt_mappings = {
+"    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+"    \ 'AcceptSelection("t")': ['<cr>'],
+"    \ }
 
 map <A-Left> :tabprevious<CR>
 map <A-Right> :tabnext<CR>
@@ -323,3 +339,7 @@ nmap     <C-F>n <Plug>CtrlSFCwordPath
 nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
+
+au FocusGained * :checktime
+
+nnoremap <Leader><space> :noh<cr>
