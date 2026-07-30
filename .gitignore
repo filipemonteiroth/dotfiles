@@ -1,0 +1,5 @@
+.DS_Store
+# Dracula Pro is a paid, per-user licensed theme — never commit/publish it.
+# install.sh re-vendors it from ~/development/Dracula Pro on each machine.
+nvim/vendor/
+nvim/lazy-lock.json.bak*
