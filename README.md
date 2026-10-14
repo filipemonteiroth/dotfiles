@@ -20,7 +20,7 @@ cd ~/development/dotfiles
 
 The script:
 1. Symlinks `~/.tmux.conf` and `~/.config/nvim` (backs up anything in the way to `*.bak.<timestamp>`)
-2. Installs brew deps: `neovim`, `tmux`, `ripgrep`, `fd`, `lazygit`, `tree-sitter-cli`
+2. Installs brew deps: `neovim`, `tmux`, `ripgrep`, `fd`, `lazygit`, `tree-sitter-cli`, `node`, `elixir`, and the Monaspace Nerd Font
 3. Clones [tpm](https://github.com/tmux-plugins/tpm) for tmux plugin management
 
 **After install:**

@@ -31,11 +31,15 @@ echo "==> Installing dependencies (brew)"
 if command -v brew >/dev/null; then
   # ripgrep/fd: telescope grep + file finding; make: telescope-fzf-native build
   # tree-sitter-cli: required by nvim-treesitter (main branch) to build parsers
-  for pkg in neovim tmux ripgrep fd lazygit tree-sitter-cli; do
+  # node: Mason installs vtsls/eslint/tailwindcss/prettierd etc. via npm
+  # elixir: ElixirLS + `mix format`
+  for pkg in neovim tmux ripgrep fd lazygit tree-sitter-cli node elixir; do
     brew list "$pkg" >/dev/null 2>&1 || brew install "$pkg"
   done
+  # Nerd Font for statusline/tree icons
+  brew list --cask font-monaspace-nerd-font >/dev/null 2>&1 || brew install --cask font-monaspace-nerd-font
 else
-  echo "brew not found — install neovim, tmux, ripgrep, fd, lazygit manually"
+  echo "brew not found — install neovim, tmux, ripgrep, fd, lazygit, tree-sitter-cli, node, elixir and a Nerd Font manually"
 fi
 
 echo "==> Dracula Pro (licensed — vendored locally, never committed)"
