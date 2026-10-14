@@ -1,0 +1,112 @@
+# Starship prompt — Dracula palette, git-centric.
+# Docs: https://starship.rs/config/
+"$schema" = "https://starship.rs/config-schema.json"
+
+palette = "dracula"
+add_newline = true
+command_timeout = 1000
+
+format = """
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$git_metrics\
+$fill\
+$nodejs\
+$elixir\
+$aws\
+$kubernetes\
+$cmd_duration\
+$line_break\
+$character"""
+
+[palettes.dracula]
+background = "#282a36"
+current_line = "#44475a"
+foreground = "#f8f8f2"
+comment = "#6272a4"
+cyan = "#8be9fd"
+green = "#50fa7b"
+orange = "#ffb86c"
+pink = "#ff79c6"
+purple = "#bd93f9"
+red = "#ff5555"
+yellow = "#f1fa8c"
+
+[fill]
+symbol = " "
+
+[character]
+success_symbol = "[❯](bold purple)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
+
+[directory]
+style = "bold cyan"
+read_only = " 󰌾"
+read_only_style = "red"
+truncation_length = 4
+truncate_to_repo = true
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = " "
+style = "bold pink"
+format = "[on](comment) [$symbol$branch(:$remote_branch)]($style) "
+
+[git_commit]
+style = "bold green"
+tag_disabled = false
+tag_symbol = "  "
+
+[git_state]
+style = "bold yellow"
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+[git_status]
+style = "bold red"
+format = "([$all_status$ahead_behind]($style) )"
+conflicted = "[=$count](bold red)"
+ahead = "[⇡$count](bold green)"
+behind = "[⇣$count](bold orange)"
+diverged = "[⇕⇡$ahead_count⇣$behind_count](bold orange)"
+untracked = "[?$count](bold cyan)"
+stashed = "[\\$$count](bold purple)"
+modified = "[!$count](bold yellow)"
+staged = "[+$count](bold green)"
+renamed = "[»$count](bold purple)"
+deleted = "[✘$count](bold red)"
+
+[git_metrics]
+disabled = false
+added_style = "green"
+deleted_style = "red"
+format = "([+$added]($added_style) )([-$deleted]($deleted_style) )"
+
+[cmd_duration]
+min_time = 2000
+style = "yellow"
+format = "[ $duration]($style) "
+
+[nodejs]
+symbol = " "
+style = "green"
+format = "[$symbol($version)]($style) "
+
+[elixir]
+symbol = " "
+style = "purple"
+format = "[$symbol($version)]($style) "
+
+[aws]
+symbol = " "
+style = "bold orange"
+format = "[$symbol($profile)(\\($region\\))]($style) "
+
+[kubernetes]
+disabled = false
+symbol = "󱃾 "
+style = "bold cyan"
+format = "[$symbol$context( \\($namespace\\))]($style) "

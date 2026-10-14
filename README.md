@@ -65,6 +65,10 @@ nvim/
     treesitter.lua          syntax/indentation
     colorscheme.lua         Dracula Pro (vendored) → falls back to dracula.nvim
     ui.lua                  lualine, which-key, fidget
+zsh/dracula.zsh             prompt, plugins, fzf/zoxide/eza/bat, Dracula colors (sourced from ~/.zshrc)
+starship/starship.toml      Starship prompt: git branch/status/metrics, node/elixir, AWS, k8s
+git/gitconfig               delta pager, Dracula colors, zdiff3, aliases (included from ~/.gitconfig)
+lazygit/config.yml          Dracula theme + delta diffs
 ```
 
 ---
@@ -126,6 +130,22 @@ source-file ~/development/dotfiles/tmux/dracula-pro/<variant>.conf
 Variants: `pro` · `blade` · `buffy` · `lincoln` · `morbius` · `van_helsing` · `alucard` (light)
 
 ---
+
+### zsh + git
+
+| Key / command | Action |
+|---|---|
+| `→` / `End` | accept autosuggestion (grey text) |
+| `↑` / `↓` | history search by the prefix already typed |
+| `C-r` / `C-t` / `Alt-c` | fzf: history / insert file / cd into dir |
+| `z <dir>` / `zi` | zoxide jump / interactive jump |
+| `ll` `la` `lt` | eza long / all / tree (with git status) |
+| `fco` | fuzzy checkout branch (sorted by recent) |
+| `flog` | fuzzy browse log, Enter opens commit in delta |
+| `lg` | lazygit |
+| `git lg` / `git lga` | pretty graph log (current / all branches) |
+| `git recent` / `git st` | branches by recency / short status |
+| `n` / `N` in a diff | delta: jump between files |
 
 ### Neovim
 

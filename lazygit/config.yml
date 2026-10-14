@@ -1,0 +1,34 @@
+# lazygit — Dracula theme + delta for diffs
+gui:
+  nerdFontsVersion: "3"
+  border: rounded
+  theme:
+    activeBorderColor:
+      - "#ff79c6"
+      - bold
+    inactiveBorderColor:
+      - "#6272a4"
+    searchingActiveBorderColor:
+      - "#8be9fd"
+      - bold
+    optionsTextColor:
+      - "#6272a4"
+    selectedLineBgColor:
+      - "#44475a"
+    inactiveViewSelectedLineBgColor:
+      - "#44475a"
+    cherryPickedCommitFgColor:
+      - "#6272a4"
+    cherryPickedCommitBgColor:
+      - "#8be9fd"
+    markedBaseCommitFgColor:
+      - "#8be9fd"
+    markedBaseCommitBgColor:
+      - "#f1fa8c"
+    unstagedChangesColor:
+      - "#ff5555"
+    defaultFgColor:
+      - "#f8f8f2"
+git:
+  pagers:
+    - pager: delta --dark --paging=never --line-numbers --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"

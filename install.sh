@@ -26,6 +26,8 @@ link() {
 echo "==> Symlinking configs"
 link "$DOTFILES/tmux/tmux.conf" "$HOME/.tmux.conf"
 link "$DOTFILES/nvim" "$HOME/.config/nvim"
+link "$DOTFILES/starship/starship.toml" "$HOME/.config/starship.toml"
+link "$DOTFILES/lazygit/config.yml" "$HOME/Library/Application Support/lazygit/config.yml"
 
 echo "==> Installing dependencies (brew)"
 if command -v brew >/dev/null; then
@@ -33,7 +35,10 @@ if command -v brew >/dev/null; then
   # tree-sitter-cli: required by nvim-treesitter (main branch) to build parsers
   # node: Mason installs vtsls/eslint/tailwindcss/prettierd etc. via npm
   # elixir: ElixirLS + `mix format`
-  for pkg in neovim tmux ripgrep fd lazygit tree-sitter-cli node elixir; do
+  # starship..vivid: zsh prompt, plugins and modern CLI replacements (see zsh/dracula.zsh)
+  # git-delta: syntax-highlighted git diffs (see git/gitconfig)
+  for pkg in neovim tmux ripgrep fd lazygit tree-sitter-cli node elixir \
+    starship zsh-autosuggestions zsh-syntax-highlighting fzf zoxide eza bat git-delta vivid; do
     brew list "$pkg" >/dev/null 2>&1 || brew install "$pkg"
   done
   # Nerd Font for statusline/tree icons
@@ -41,6 +46,23 @@ if command -v brew >/dev/null; then
 else
   echo "brew not found — install neovim, tmux, ripgrep, fd, lazygit, tree-sitter-cli, node, elixir and a Nerd Font manually"
 fi
+
+echo "==> zsh + git"
+ZSHRC_LINE="source \"$DOTFILES/zsh/dracula.zsh\""
+if ! grep -qF "$ZSHRC_LINE" "$HOME/.zshrc" 2>/dev/null; then
+  printf '\n# Dotfiles: prompt, plugins, Dracula colors (keep last)\n%s\n' "$ZSHRC_LINE" >> "$HOME/.zshrc"
+  echo "added   source line to ~/.zshrc"
+else
+  echo "ok      ~/.zshrc sources dracula.zsh"
+fi
+if ! git config --global --get-all include.path | grep -qxF "$DOTFILES/git/gitconfig"; then
+  git config --global --add include.path "$DOTFILES/git/gitconfig"
+  echo "added   include.path to ~/.gitconfig"
+else
+  echo "ok      ~/.gitconfig includes git/gitconfig"
+fi
+# Rebuild bat's cache so the Dracula theme and syntaxes are available
+command -v bat >/dev/null && bat cache --build >/dev/null
 
 echo "==> Dracula Pro (licensed — vendored locally, never committed)"
 DRACULA_PRO="$HOME/development/Dracula Pro"
@@ -68,3 +90,5 @@ echo "  1. tmux: start tmux, then prefix + I (C-a I) to install plugins (incl. D
 echo "     If tmux is already running: tmux source ~/.tmux.conf"
 echo "  2. nvim: open nvim — lazy.nvim bootstraps and installs everything on first run"
 echo "     LSPs (ElixirLS, vtsls, etc.) install automatically via Mason"
+echo "  3. zsh: open a new terminal (or: exec zsh). Set your terminal font to"
+echo "     'MonaspiceAr Nerd Font' and a Dracula color profile so the prompt icons/colors render"

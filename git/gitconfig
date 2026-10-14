@@ -1,0 +1,79 @@
+# Shared git settings — pulled into ~/.gitconfig via [include] by install.sh,
+# so machine-specific settings (user, url rewrites) stay in ~/.gitconfig.
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true          # n / N jump between files in a diff
+	line-numbers = true
+	hyperlinks = true
+	syntax-theme = Dracula
+	file-style = bold "#bd93f9"
+	file-decoration-style = "#bd93f9" ul
+	hunk-header-style = file line-number syntax
+	hunk-header-decoration-style = "#6272a4" box
+	line-numbers-minus-style = "#ff5555"
+	line-numbers-plus-style = "#50fa7b"
+	line-numbers-zero-style = "#6272a4"
+	line-numbers-left-style = "#6272a4"
+	line-numbers-right-style = "#6272a4"
+	minus-style = syntax "#4c2a35"
+	minus-emph-style = syntax "#7a2f3e"
+	plus-style = syntax "#2b4a37"
+	plus-emph-style = syntax "#2f6b44"
+	map-styles = bold purple => syntax "#3d3550", bold cyan => syntax "#2e4a55"
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	mnemonicPrefix = true
+	renames = true
+
+[color]
+	ui = auto
+
+[color "branch"]
+	current = "#50fa7b" bold
+	local = "#f8f8f2"
+	remote = "#ff79c6"
+	upstream = "#8be9fd"
+
+[color "status"]
+	added = "#50fa7b"
+	changed = "#ffb86c"
+	untracked = "#8be9fd"
+	branch = "#ff79c6" bold
+	nobranch = "#ff5555" bold
+
+[color "decorate"]
+	HEAD = "#ff5555" bold
+	branch = "#50fa7b" bold
+	remoteBranch = "#ff79c6" bold
+	tag = "#f1fa8c" bold
+	stash = "#bd93f9"
+
+[column]
+	ui = auto
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[help]
+	autocorrect = prompt
+
+[alias]
+	lg = log --graph --abbrev-commit --date=relative --format='%C(#ffb86c)%h%C(reset) %C(#f8f8f2)%s%C(reset) %C(#6272a4)(%ar · %an)%C(reset)%C(auto)%d%C(reset)'
+	lga = lg --all
+	st = status -sb
+	last = log -1 HEAD --stat
+	recent = branch --sort=-committerdate --format='%(color:#ff79c6)%(refname:short)%(color:reset) %(color:#6272a4)%(committerdate:relative)%(color:reset)'
