@@ -1,9 +1,9 @@
 -- Dracula Pro (licensed) is vendored into nvim/vendor/ by install.sh and
 -- gitignored. On machines without it, the OSS dracula.nvim is used instead.
 --
--- Variants: dracula_pro (default), dracula_pro_alucard (light), dracula_pro_blade,
--- dracula_pro_buffy, dracula_pro_lincoln, dracula_pro_morbius, dracula_pro_van_helsing.
--- Switch live with <leader>fc or :colorscheme dracula_pro_<variant>.
+-- Variants: dracula-pro (default), dracula-pro-alucard (light), dracula-pro-blade,
+-- dracula-pro-buffy, dracula-pro-lincoln, dracula-pro-morbius, dracula-pro-van-helsing.
+-- Switch live with <leader>fc or :colorscheme dracula-pro-<variant>.
 local pro_dir = vim.fn.stdpath("config") .. "/vendor/dracula-pro"
 local has_pro = vim.uv.fs_stat(pro_dir) ~= nil
 
@@ -15,7 +15,7 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("dracula_pro")
+      vim.cmd.colorscheme("dracula-pro")
     end,
   },
   {

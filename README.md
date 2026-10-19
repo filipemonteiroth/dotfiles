@@ -311,11 +311,11 @@ The license is per-user. Never commit or publish the theme files.
 **Switching variants in nvim:** `<leader>fc` for a live picker, or:
 
 ```
-:colorscheme dracula_pro_blade
+:colorscheme dracula-pro-blade
 ```
 
-Available: `dracula_pro` · `dracula_pro_blade` · `dracula_pro_buffy` · `dracula_pro_lincoln`
-· `dracula_pro_morbius` · `dracula_pro_van_helsing` · `dracula_pro_alucard` (light)
+Available: `dracula-pro` · `dracula-pro-blade` · `dracula-pro-buffy` · `dracula-pro-lincoln`
+· `dracula-pro-morbius` · `dracula-pro-van-helsing` · `dracula-pro-alucard` (light)
 
 ---
 
